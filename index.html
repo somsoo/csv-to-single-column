@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <title>CSV 2차원 데이터를 한 열로 변환 - 무료 온라인 툴</title>
+  <meta name="description" content="CSV 또는 엑셀에서 복사한 2차원 데이터를 한 열(1차원) 데이터로 변환해주는 간편한 무료 웹 도구입니다. 모바일/PC 모두 최적화.">
+  <meta name="keywords" content="CSV, 엑셀, 데이터 변환, 2차원, 1차원, 한 열, column, 온라인 툴, 무료, 서버리스">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+  <!-- Open Graph (SNS 공유 시 미리보기) -->
+  <meta property="og:title" content="CSV 2차원 데이터를 한 열로 변환 - 무료 온라인 툴">
+  <meta property="og:description" content="CSV/엑셀 데이터를 복사해 붙여넣으면 한 열 데이터로 변환! 서버 없이 빠르고 간편하게 사용할 수 있습니다.">
+  <meta property="og:type" content="website">
+  <meta property="og:locale" content="ko_KR">
+  <meta property="og:url" content="https://csv-to-single-column.enjoy-onepage.com">
+  <!-- 나중에 이미지 추가 예정 -->
+  <!-- <meta property="og:image" content="https://csv-to-single-column.enjoy-onepage.com/images/csv-to-single-column-og-img.png"> -->
+
+  <!-- 파비콘 (나중에 추가 예정) -->
+  <!-- <link rel="icon" href="https://csv-to-single-column.enjoy-onepage.com/favicon.ico" type="image/x-icon"> -->
+
+  <!-- Google AdSense 광고 스크립트 -->
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+
+  <style>
+    html, body {
+      margin: 0;
+      padding: 0;
+      background: #f5f8fa;
+      color: #222;
+      font-family: 'Apple SD Gothic Neo', 'Segoe UI', 'Malgun Gothic', sans-serif;
+      font-size: 17px;
+      height: 100%;
+    }
+    body {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+    main {
+      width: 100%;
+      max-width: 480px;
+      background: #fff;
+      margin: 0 auto;
+      padding: 28px 5vw 32px 5vw;
+      border-radius: 12px;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.04);
+      box-sizing: border-box;
+      margin-top: 28px;
+      margin-bottom: 28px;
+    }
+    h1 {
+      font-size: 1.5em;
+      margin-bottom: 12px;
+      text-align: center;
+    }
+    p {
+      text-align: center;
+      margin-bottom: 24px;
+      color: #555;
+    }
+    label {
+      display: block;
+      font-weight: 600;
+      margin-bottom: 8px;
+      margin-top: 18px;
+      font-size: 1em;
+    }
+    textarea {
+      width: 100%;
+      min-height: 90px;
+      font-size: 1em;
+      padding: 14px 12px;
+      border: 1.5px solid #c8d6e5;
+      border-radius: 8px;
+      resize: vertical;
+      margin-bottom: 18px;
+      box-sizing: border-box;
+      transition: border 0.2s;
+      background: #fafdff;
+    }
+    textarea:focus {
+      outline: none;
+      border-color: #007acc;
+      background: #f0f8ff;
+    }
+    .btn-group {
+      display: flex;
+      gap: 12px;
+      margin-bottom: 18px;
+    }
+    button {
+      flex: 1;
+      font-size: 1.1em;
+      padding: 14px 0;
+      background: #007acc;
+      color: white;
+      border: none;
+      border-radius: 8px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: background 0.2s;
+      box-shadow: 0 1px 4px rgba(0,0,0,0.03);
+    }
+    button:active, button:focus {
+      background: #005fa3;
+      outline: none;
+    }
+    .result label {
+      margin-top: 0;
+    }
+    .result textarea {
+      min-height: 80px;
+      background: #f7fbfd;
+    }
+    footer {
+      width: 100%;
+      text-align: center;
+      color: #888;
+      font-size: 0.97em;
+      margin-bottom: 18px;
+    }
+    a {
+      color: #007acc;
+      text-decoration: none;
+    }
+    a:hover {
+      text-decoration: underline;
+    }
+    .adsense {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      margin: 18px 0;
+      min-height: 90px;
+      width: 100%;
+    }
+    @media (max-width: 600px) {
+      main {
+        max-width: 98vw;
+        padding: 18px 2vw 22px 2vw;
+        margin-top: 12px;
+        margin-bottom: 12px;
+        border-radius: 0;
+        box-shadow: none;
+      }
+      h1 {
+        font-size: 1.15em;
+      }
+      textarea, button {
+        font-size: 1em;
+      }
+      .adsense {
+        min-height: 60px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <main>
+    <h1>CSV 2차원 데이터를 한 열로 변환</h1>
+
+    <!-- 상단 광고 -->
+    <div class="adsense">
+      <ins class="adsbygoogle"
+           style="display:block"
+           data-ad-client="ca-pub-1234567890123456"
+           data-ad-slot="1111111111"
+           data-ad-format="auto"
+           data-full-width-responsive="true"></ins>
+      <script>
+        (adsbygoogle = window.adsbygoogle || []).push({});
+      </script>
+    </div>
+
+    <p>엑셀/CSV 데이터를 복사해 붙여넣고, <b>한 열(1차원) 데이터</b>로 변환하세요.<br>
+    모바일과 PC 모두 최적화된 무료 웹 도구입니다.</p>
+
+    <section>
+      <label for="input">CSV/엑셀 데이터 입력</label>
+      <textarea id="input" placeholder="여기에 CSV 또는 엑셀 데이터를 붙여넣으세요"></textarea>
+
+      <div class="btn-group">
+        <button onclick="convert()">한 열로 변환</button>
+        <button onclick="copyResult()" style="background:#4caf50;">결과 복사</button>
+      </div>
+
+      <!-- 중간 광고 -->
+      <div class="adsense">
+        <ins class="adsbygoogle"
+             style="display:block"
+             data-ad-client="ca-pub-1234567890123456"
+             data-ad-slot="2222222222"
+             data-ad-format="auto"
+             data-full-width-responsive="true"></ins>
+        <script>
+          (adsbygoogle = window.adsbygoogle || []).push({});
+        </script>
+      </div>
+    </section>
+
+    <section class="result">
+      <label for="output">변환 결과 (한 열 데이터)</label>
+      <textarea id="output" readonly placeholder="여기에 변환된 데이터가 표시됩니다"></textarea>
+
+      <!-- 하단 광고 -->
+      <div class="adsense">
+        <ins class="adsbygoogle"
+             style="display:block"
+             data-ad-client="ca-pub-1234567890123456"
+             data-ad-slot="3333333333"
+             data-ad-format="auto"
+             data-full-width-responsive="true"></ins>
+        <script>
+          (adsbygoogle = window.adsbygoogle || []).push({});
+        </script>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    &copy; 2025 <a href="https://csv-to-single-column.enjoy-onepage.com" target="_blank">csv-to-single-column.enjoy-onepage.com</a>. 모든 권리 보유.
+  </footer>
+
+  <script>
+    function convert() {
+      const input = document.getElementById('input').value;
+      const rows = input.trim().split(/\r?\n/);
+      const flat = rows.flatMap(row => row.split(/,|;|\t|\|/));
+      const cleaned = flat.map(cell => cell.trim()).filter(cell => cell !== '');
+      document.getElementById('output').value = cleaned.join('\n');
+    }
+
+    function copyResult() {
+      const output = document.getElementById('output');
+      output.select();
+      output.setSelectionRange(0, 99999);
+      document.execCommand('copy');
+      if (window.navigator && window.navigator.vibrate) window.navigator.vibrate(60);
+      output.blur();
+    }
+  </script>
+</body>
+</html>
