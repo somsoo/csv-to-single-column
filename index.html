@@ -1,531 +1,232 @@
 <!DOCTYPE html>
 <html lang="ko">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>색좌표 변환기 - xyY, XYZ, Lab + HSL, HSV + 이름 + 복사</title>
+  <meta charset="UTF-8">
+  <title>CSV 2차원 데이터를 한 열로 변환 - 무료 온라인 툴</title>
+  <meta name="description" content="CSV 또는 엑셀에서 복사한 2차원 데이터를 한 열(1차원) 데이터로 변환해주는 간편한 무료 웹 도구입니다. 모바일/PC 모두 최적화.">
+  <meta name="keywords" content="CSV, 엑셀, 데이터 변환, 2차원, 1차원, 한 열, column, 온라인 툴, 무료, 서버리스">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
-  <!-- SEO 기본 메타태그 -->
-  <meta name="description" content="색좌표 변환기: xyY, XYZ, Lab, HSL, HSV 등 다양한 색상 좌표계 변환, 실시간 미리보기, 색상 이름 추정, CSV/이미지 다운로드, 접근성/반응형 지원.">
-  <meta name="keywords" content="색좌표 변환, color converter, xyY, XYZ, Lab, HSL, HSV, 색상 변환, 색상 이름, CIE, 색도도, 색상 도구, color tool">
-  <meta name="author" content="Enjoy Onepage">
-  <link rel="canonical" href="https://color-coordinate-converter.enjoy-onepage.com">
-
-  <!-- Open Graph (SNS/카카오톡/페이스북/슬랙 등 공유용) -->
+  <!-- Open Graph -->
+  <meta property="og:title" content="CSV 2차원 데이터를 한 열로 변환 - 무료 온라인 툴">
+  <meta property="og:description" content="CSV/엑셀 데이터를 복사해 붙여넣으면 한 열 데이터로 변환! 서버 없이 빠르고 간편하게 사용할 수 있습니다.">
   <meta property="og:type" content="website">
-  <meta property="og:url" content="https://color-coordinate-converter.enjoy-onepage.com">
-  <meta property="og:title" content="색좌표 변환기 | Color Coordinate Converter">
-  <meta property="og:description" content="xyY, XYZ, Lab, HSL, HSV 등 색상 좌표계 변환, 실시간 미리보기, 색상 이름, CSV/이미지 다운로드 지원.">
-  <meta property="og:image" content="https://color-coordinate-converter.enjoy-onepage.com/images/color-converter-og-image.png">
-  <meta property="og:site_name" content="색좌표 변환기">
+  <meta property="og:locale" content="ko_KR">
+  <meta property="og:url" content="https://csv-to-single-column.enjoy-onepage.com">
+  <meta property="og:image" content="https://csv-to-single-column.enjoy-onepage.com/images/csv-to-single-column-og-img.png">
 
-  <!-- Twitter Card -->
-  <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="색좌표 변환기 | Color Coordinate Converter">
-  <meta name="twitter:description" content="xyY, XYZ, Lab, HSL, HSV 등 색상 좌표계 변환, 실시간 미리보기, 색상 이름, CSV/이미지 다운로드 지원.">
-  <meta name="twitter:image" content="https://color-coordinate-converter.enjoy-onepage.com/images/color-converter-og-image.png">
-  <meta name="twitter:url" content="https://color-coordinate-converter.enjoy-onepage.com">
-
-  <!-- Favicon & App Icons -->
-  <link rel="icon" type="image/png" sizes="32x32" href="images/icon.png">
-  <link rel="icon" type="image/png" sizes="16x16" href="images/icon.png">
-  <link rel="shortcut icon" href="images/icon.png">
-  <link rel="apple-touch-icon" href="images/icon.png">
-
-  <!-- manifest (PWA 지원 시) -->
-  <!-- <link rel="manifest" href="manifest.json"> -->
-
-  <!-- 기타 SEO 개선 -->
-  <meta name="robots" content="index, follow">
-  <meta name="theme-color" content="#1976d2">
-  <meta name="msapplication-TileColor" content="#1976d2">
-  <meta name="msapplication-TileImage" content="images/icon.png">
+  <link rel="icon" href="https://csv-to-single-column.enjoy-onepage.com/favicon.ico" type="image/x-icon">
 
   <!-- Google AdSense -->
-  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2228289204702106" crossorigin="anonymous"></script>
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
 
   <style>
-    :root {
-      --main-blue: #1976d2;
-      --main-blue-dark: #1565c0;
-      --main-gray: #f4f6f8;
-      --main-white: #fff;
-      --main-border: #e0e0e0;
-      --main-radius: 14px;
-      --main-shadow: 0 2px 12px rgba(0,0,0,0.07);
-      --main-font: 'Apple SD Gothic Neo', 'Pretendard', 'Noto Sans KR', sans-serif;
-      --error: #e53935;
-      --success: #388e3c;
-      --info: #0288d1;
-    }
     html, body {
-      font-family: var(--main-font);
-      background: var(--main-gray);
       margin: 0;
       padding: 0;
+      background: #f5f8fa;
       color: #222;
+      font-family: 'Apple SD Gothic Neo', 'Segoe UI', 'Malgun Gothic', sans-serif;
+      font-size: 17px;
+      height: 100%;
+    }
+    body {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+    main {
+      width: 100%;
+      max-width: 480px;
+      background: #fff;
+      margin: 0 auto;
+      padding: 28px 5vw 32px 5vw;
+      border-radius: 12px;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.04);
+      box-sizing: border-box;
+      margin-top: 28px;
+      margin-bottom: 28px;
     }
     h1 {
+      font-size: 1.5em;
+      margin-bottom: 12px;
       text-align: center;
-      font-size: 2.1rem;
-      margin: 2rem 0 1.2rem;
-      font-weight: 700;
-      letter-spacing: -1px;
     }
-    .lang-switch {
-      position: fixed;
-      top: 14px;
-      right: 18px;
-      z-index: 10;
-      background: var(--main-white);
-      border: 1px solid var(--main-border);
-      border-radius: 6px;
-      padding: 0.4em 1em;
-      font-size: 1rem;
-      cursor: pointer;
-      color: var(--main-blue);
-      box-shadow: var(--main-shadow);
-    }
-    .container {
-      max-width: 900px;
-      margin: auto;
-      display: flex;
-      flex-direction: column;
-      gap: 2.2rem;
-      padding: 0 1rem 2.5rem;
-    }
-    .card {
-      background: var(--main-white);
-      border-radius: var(--main-radius);
-      box-shadow: var(--main-shadow);
-      padding: 1.6rem 1.2rem 1.2rem;
-      margin-bottom: 0.5rem;
-      position: relative;
-    }
-    .card h2 {
-      margin-top: 0;
-      font-size: 1.25rem;
-      margin-bottom: 1.1rem;
-      font-weight: 600;
-      letter-spacing: -0.5px;
-    }
-    .form-group {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
-      gap: 1.1rem;
-      margin-bottom: 0.2rem;
+    p {
+      text-align: center;
+      margin-bottom: 24px;
+      color: #555;
     }
     label {
+      display: block;
       font-weight: 600;
-      margin-top: 0.5rem;
-      display: flex;
-      align-items: center;
-      gap: 0.3em;
+      margin-bottom: 8px;
+      margin-top: 18px;
+      font-size: 1em;
     }
-    .input-row {
-      display: flex;
-      flex-direction: column;
-      gap: 0.2em;
-      position: relative;
-    }
-    .input-row input {
-      padding: 0.6rem;
+    textarea {
       width: 100%;
-      font-size: 1rem;
-      border-radius: 7px;
-      border: 1.5px solid var(--main-border);
-      transition: border-color 0.2s;
+      min-height: 90px;
+      font-size: 1em;
+      padding: 14px 12px;
+      border: 1.5px solid #c8d6e5;
+      border-radius: 8px;
+      resize: vertical;
+      margin-bottom: 18px;
       box-sizing: border-box;
-      background: #f9f9fb;
+      transition: border 0.2s;
+      background: #fafdff;
     }
-    .input-row input:focus {
-      border-color: var(--main-blue);
+    textarea:focus {
       outline: none;
+      border-color: #007acc;
+      background: #f0f8ff;
     }
-    .input-row input.input-error {
-      border-color: var(--error);
-      background: #fff1f0;
-    }
-    .input-error-message {
-      color: var(--error);
-      font-size: 0.92em;
-      margin-top: 0.1em;
-      min-height: 1.2em;
-    }
-    .tip {
-      font-size: 0.92em;
-      color: #666;
-      margin: 0.25em 0 0.3em 0.2em;
+    .btn-group {
+      display: flex;
+      gap: 12px;
+      margin-bottom: 18px;
     }
     button {
-      margin-top: 1.1rem;
-      padding: 0.7rem 1.4rem;
-      background-color: var(--main-blue);
-      color: var(--main-white);
+      flex: 1;
+      font-size: 1.1em;
+      padding: 14px 0;
+      background: #007acc;
+      color: white;
       border: none;
       border-radius: 8px;
-      cursor: pointer;
-      font-size: 1.07rem;
       font-weight: 600;
+      cursor: pointer;
       transition: background 0.2s;
-      box-shadow: 0 2px 6px rgba(25, 118, 210, 0.07);
-      margin-right: 0.5rem;
+      box-shadow: 0 1px 4px rgba(0,0,0,0.03);
     }
-    button:hover, .copy-btn:hover {
-      background-color: var(--main-blue-dark);
-      color: #fff;
+    button:active, button:focus {
+      background: #005fa3;
+      outline: none;
     }
-    .output-row {
-      display: flex;
-      align-items: center;
-      gap: 0.7em;
-      margin-top: 1.1em;
-      margin-bottom: 0.2em;
+    .result label {
+      margin-top: 0;
     }
-    .output {
-      padding: 0.7em 1.1em;
-      background: #f1f1f1;
-      border-radius: 7px;
-      font-family: monospace;
-      font-size: 1.1em;
-      white-space: pre-wrap;
-      flex: 1;
-      word-break: break-all;
-      border: 1px solid #e0e0e0;
-      min-width: 0;
+    .result textarea {
+      min-height: 80px;
+      background: #f7fbfd;
     }
-    .output-label {
-      min-width: 4.5em;
-      font-weight: 500;
-      color: #555;
-      font-size: 0.98em;
-    }
-    .copy-btn {
-      font-size: 0.98em;
-      padding: 0.35em 0.8em;
-      cursor: pointer;
-      border: 1px solid var(--main-blue);
-      background: #fff;
-      border-radius: 5px;
-      color: var(--main-blue);
-      margin-left: 0;
-      transition: background 0.2s, color 0.2s;
-    }
-    .copy-btn:active {
-      background: var(--main-blue);
-      color: #fff;
-    }
-    .color-preview {
-      margin-top: 1.2em;
-      margin-bottom: 0.3em;
-      height: 62px;
-      border-radius: 8px;
-      border: 1.5px solid #e0e0e0;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 1.08em;
-      font-family: monospace;
-      font-weight: 600;
-      letter-spacing: 0.04em;
-      color: #333;
-      background: #fafbfb;
-      position: relative;
-    }
-    .color-preview .color-label {
-      background: rgba(255,255,255,0.8);
-      padding: 0.1em 0.5em;
-      border-radius: 5px;
-      font-size: 0.98em;
-      margin-left: 0.5em;
-      color: #444;
-    }
-    .color-info {
+    footer {
+      width: 100%;
+      text-align: center;
+      color: #888;
       font-size: 0.97em;
-      color: #555;
-      margin-top: 0.3em;
-      margin-bottom: 0.2em;
-      display: flex;
-      gap: 1.2em;
-      flex-wrap: wrap;
+      margin-bottom: 18px;
     }
-    .download-btns {
-      margin-top: 1.2em;
-      display: flex;
-      flex-wrap: wrap;
-      gap: 1em;
+    a {
+      color: #007acc;
+      text-decoration: none;
     }
-    .download-btns button {
-      margin: 0;
-      font-size: 1em;
-      padding: 0.6em 1.1em;
-      background: #f3f7fa;
-      color: var(--main-blue);
-      border: 1.5px solid var(--main-blue);
-      border-radius: 7px;
-      font-weight: 600;
-      transition: background 0.2s, color 0.2s;
-    }
-    .download-btns button:hover {
-      background: var(--main-blue);
-      color: #fff;
-    }
-    .cie-section {
-      margin-top: 2em;
-    }
-    .cie-canvas-wrap {
-      position: relative;
-      width: 100%;
-      max-width: 600px;
-      margin: auto;
-      margin-top: 1.2em;
-    }
-    canvas {
-      width: 100%;
-      max-width: 600px;
-      border: 1.5px solid #ccc;
-      border-radius: 10px;
-      background: #fff;
-      display: block;
-      margin: auto;
-    }
-    .toast {
-      position: fixed;
-      left: 50%;
-      bottom: 3.5em;
-      transform: translateX(-50%);
-      background: var(--main-blue);
-      color: #fff;
-      padding: 0.8em 1.6em;
-      border-radius: 8px;
-      font-size: 1.08em;
-      z-index: 1000;
-      box-shadow: 0 2px 12px rgba(25, 118, 210, 0.13);
-      opacity: 0;
-      pointer-events: none;
-      transition: opacity 0.3s;
-    }
-    .toast.toast-show {
-      opacity: 1;
-      pointer-events: auto;
+    a:hover {
+      text-decoration: underline;
     }
     @media (max-width: 600px) {
-      .container {
-        padding: 0 0.1rem 2.5rem;
-      }
-      .card {
-        padding: 1.1rem 0.4rem 1rem;
-      }
-      .cie-canvas-wrap {
-        max-width: 100vw;
-      }
-      canvas {
+      main {
         max-width: 98vw;
+        padding: 18px 2vw 22px 2vw;
+        margin-top: 12px;
+        margin-bottom: 12px;
+        border-radius: 0;
+        box-shadow: none;
       }
-      .color-preview {
-        font-size: 0.97em;
-        height: 48px;
+      h1 {
+        font-size: 1.15em;
       }
-      .output {
+      textarea, button {
         font-size: 1em;
-        padding: 0.5em 0.7em;
       }
     }
   </style>
 </head>
 <body>
-  <button class="lang-switch" id="langBtn" aria-label="언어 전환">ENGLISH</button>
-  <h1 id="mainTitle">색좌표 변환기 <span style="font-size:0.7em;">xyY, XYZ, Lab + HSL, HSV + 이름 + 복사</span></h1>
-  
-  <!-- 상단 광고 -->
-  <div style="margin: 0 auto 1.2rem auto; max-width:900px; text-align:center;">
-    <ins class="adsbygoogle"
-         style="display:block"
-         data-ad-client="ca-pub-2228289204702106"
-         data-ad-slot="9680983628"
-         data-ad-format="auto"
-         data-full-width-responsive="true"></ins>
-    <script>
-      (adsbygoogle = window.adsbygoogle || []).push({});
-    </script>
-  </div>
+  <main>
+    <h1>CSV 2차원 데이터를 한 열로 변환</h1>
 
-  <div class="container">
-
-    <!-- xyY → XYZ -->
-    <div class="card" aria-labelledby="xyy2xyzTitle">
-      <h2 id="xyy2xyzTitle">xyY → XYZ 변환</h2>
-      <div class="tip">예시: x=0.3127, y=0.3290, Y=100 (D65 백색점)</div>
-      <div class="form-group">
-        <div class="input-row">
-          <label for="x">x (0~1)
-            <span title="CIE 1931 색좌표계 x 값" aria-label="x 값 설명">ⓘ</span>
-          </label>
-          <input type="number" id="x" inputmode="decimal" step="0.0001" min="0" max="1" value="0.3127" autocomplete="off" />
-          <div class="input-error-message" id="xError"></div>
-        </div>
-        <div class="input-row">
-          <label for="y">y (0~1)
-            <span title="CIE 1931 색좌표계 y 값" aria-label="y 값 설명">ⓘ</span>
-          </label>
-          <input type="number" id="y" inputmode="decimal" step="0.0001" min="0" max="1" value="0.3290" autocomplete="off" />
-          <div class="input-error-message" id="yError"></div>
-        </div>
-        <div class="input-row">
-          <label for="Y">Y (휘도)
-            <span title="상대 휘도(밝기) 값" aria-label="휘도 설명">ⓘ</span>
-          </label>
-          <input type="number" id="Y" inputmode="decimal" step="0.01" min="0" value="100" autocomplete="off" />
-          <div class="input-error-message" id="YError"></div>
-        </div>
-      </div>
-      <button onclick="xyYtoXYZ()" id="xyy2xyzBtn">변환</button>
-      <div class="output-row">
-        <span class="output-label">XYZ</span>
-        <div class="output" id="xyzResult"></div>
-        <button class="copy-btn" onclick="copyText('xyzResult')">복사</button>
-      </div>
-      <div class="color-preview" id="colorPreview">
-        <span id="hexLabel1"></span>
-        <span class="color-label" id="colorName1"></span>
-      </div>
-      <div class="color-info" id="colorInfo1"></div>
+    <!-- ✅ 상단 광고 -->
+    <div style="margin: 0 auto 1.2rem auto; max-width:900px; text-align:center;">
+      <ins class="adsbygoogle"
+           style="display:block"
+           data-ad-client="ca-pub-2228289204702106"
+           data-ad-slot="2836158079"
+           data-ad-format="auto"
+           data-full-width-responsive="true"></ins>
+      <script>
+        (adsbygoogle = window.adsbygoogle || []).push({});
+      </script>
     </div>
 
-    <!-- XYZ → xyY & Lab & 이름 -->
-    <div class="card" aria-labelledby="xyz2othersTitle">
-      <h2 id="xyz2othersTitle">XYZ → xyY, Lab, 이름 변환</h2>
-      <div class="tip">예시: X=95.047, Y=100.000, Z=108.883 (D65 백색점)</div>
-      <div class="form-group">
-        <div class="input-row">
-          <label for="X">X
-            <span title="CIE 1931 XYZ 색좌표계 X" aria-label="X 값 설명">ⓘ</span>
-          </label>
-          <input type="number" id="X" inputmode="decimal" step="0.01" min="0" value="95.047" autocomplete="off" />
-          <div class="input-error-message" id="XError"></div>
-        </div>
-        <div class="input-row">
-          <label for="Y2">Y
-            <span title="CIE 1931 XYZ 색좌표계 Y" aria-label="Y 값 설명">ⓘ</span>
-          </label>
-          <input type="number" id="Y2" inputmode="decimal" step="0.01" min="0" value="100.000" autocomplete="off" />
-          <div class="input-error-message" id="Y2Error"></div>
-        </div>
-        <div class="input-row">
-          <label for="Z">Z
-            <span title="CIE 1931 XYZ 색좌표계 Z" aria-label="Z 값 설명">ⓘ</span>
-          </label>
-          <input type="number" id="Z" inputmode="decimal" step="0.01" min="0" value="108.883" autocomplete="off" />
-          <div class="input-error-message" id="ZError"></div>
-        </div>
-      </div>
-      <button onclick="XYZtoxyY()" id="xyz2othersBtn">변환</button>
-      <div class="output-row">
-        <span class="output-label">xyY</span>
-        <div class="output" id="xyyResult"></div>
-        <button class="copy-btn" onclick="copyText('xyyResult')">복사</button>
-      </div>
-      <div class="output-row">
-        <span class="output-label">Lab</span>
-        <div class="output" id="labResult"></div>
-        <button class="copy-btn" onclick="copyText('labResult')">복사</button>
-      </div>
-      <div class="output-row">
-        <span class="output-label">이름</span>
-        <div class="output" id="colorNameResult"></div>
-      </div>
-      <div class="color-preview" id="colorPreview2">
-        <span id="hexLabel2"></span>
-        <span class="color-label" id="colorName2"></span>
-      </div>
-      <div class="color-info" id="colorInfo2"></div>
-      <div class="download-btns">
-        <button onclick="downloadCSV()" title="변환된 XYZ 값을 CSV 파일로 저장합니다">CSV 다운로드</button>
-        <button onclick="downloadCanvas()" title="CIE 색도도 이미지를 PNG로 저장합니다">CIE 색도도 이미지 저장</button>
-      </div>
-      <!-- 중단 광고 -->
-      <div style="margin: 2rem auto 2rem auto; max-width:900px; text-align:center;">
-        <ins class="adsbygoogle"
-          style="display:block;"
-          data-ad-client="ca-pub-2228289204702106"
-          data-ad-slot="3153752650"
-          data-ad-format="auto"
-          data-full-width-responsive="true"></ins>
-        <script>
-          (adsbygoogle = window.adsbygoogle || []).push({});
-        </script>
-      </div>
-    </div>
+    <p>엑셀/CSV 데이터를 복사해 붙여넣고, <b>한 열(1차원) 데이터</b>로 변환하세요.<br>
+    모바일과 PC 모두 최적화된 무료 웹 도구입니다.</p>
 
-    <!-- Lab → XYZ -->
-    <div class="card" aria-labelledby="lab2xyzTitle">
-      <h2 id="lab2xyzTitle">Lab → XYZ (역변환)</h2>
-      <div class="tip">예시: L=100, a=0, b=0 (D65 백색점)</div>
-      <div class="form-group">
-        <div class="input-row">
-          <label for="L">L (0~100)
-            <span title="Lab 색공간 밝기" aria-label="L 값 설명">ⓘ</span>
-          </label>
-          <input type="number" id="L" inputmode="decimal" step="0.01" min="0" max="100" value="100" autocomplete="off" />
-          <div class="input-error-message" id="LError"></div>
-        </div>
-        <div class="input-row">
-          <label for="a">a (-128~127)
-            <span title="Lab 색공간 녹-적 축" aria-label="a 값 설명">ⓘ</span>
-          </label>
-          <input type="number" id="a" inputmode="decimal" step="0.01" min="-128" max="127" value="0" autocomplete="off" />
-          <div class="input-error-message" id="aError"></div>
-        </div>
-        <div class="input-row">
-          <label for="b">b (-128~127)
-            <span title="Lab 색공간 청-황 축" aria-label="b 값 설명">ⓘ</span>
-          </label>
-          <input type="number" id="b" inputmode="decimal" step="0.01" min="-128" max="127" value="0" autocomplete="off" />
-          <div class="input-error-message" id="bError"></div>
-        </div>
+    <section>
+      <label for="input">CSV/엑셀 데이터 입력</label>
+      <textarea id="input" placeholder="여기에 CSV 또는 엑셀 데이터를 붙여넣으세요"></textarea>
+
+      <div class="btn-group">
+        <button onclick="convert()">한 열로 변환</button>
+        <button onclick="copyResult()" style="background:#4caf50;">결과 복사</button>
       </div>
-      <button onclick="LabtoXYZ()" id="lab2xyzBtn">변환</button>
-      <div class="output-row">
-        <span class="output-label">XYZ</span>
-        <div class="output" id="lab2xyzResult"></div>
-        <button class="copy-btn" onclick="copyText('lab2xyzResult')">복사</button>
-      </div>
-      <div class="color-preview" id="colorPreview3">
-        <span id="hexLabel3"></span>
-        <span class="color-label" id="colorName3"></span>
-      </div>
-      <div class="color-info" id="colorInfo3"></div>
-      <!-- 하단 광고 -->
-      <div style="margin: 2.5rem auto 1.5rem auto; max-width:900px; text-align:center;">
+
+      <!-- ✅ 중간 광고 -->
+      <div style="margin: 0 auto 1.2rem auto; max-width:900px; text-align:center;">
         <ins class="adsbygoogle"
              style="display:block"
              data-ad-client="ca-pub-2228289204702106"
-             data-ad-slot="3448146565"
+             data-ad-slot="1186914926"
              data-ad-format="auto"
              data-full-width-responsive="true"></ins>
         <script>
           (adsbygoogle = window.adsbygoogle || []).push({});
         </script>
       </div>
-    </div>
+    </section>
 
-    <!-- CIE 색도도 -->
-    <div class="card cie-section" aria-labelledby="cieTitle">
-      <h2 id="cieTitle">CIE 1931 색도도 시각화</h2>
-      <div class="cie-canvas-wrap">
-        <canvas id="cieCanvas" width="600" height="450" aria-label="CIE 1931 색도도"></canvas>
+    <section class="result">
+      <label for="output">변환 결과 (한 열 데이터)</label>
+      <textarea id="output" readonly placeholder="여기에 변환된 데이터가 표시됩니다"></textarea>
+
+      <!-- ✅ 하단 광고 -->
+      <div style="margin: 0 auto 1.2rem auto; max-width:900px; text-align:center;">
+        <ins class="adsbygoogle"
+             style="display:block"
+             data-ad-client="ca-pub-2228289204702106"
+             data-ad-slot="1523076403"
+             data-ad-format="auto"
+             data-full-width-responsive="true"></ins>
+        <script>
+          (adsbygoogle = window.adsbygoogle || []).push({});
+        </script>
       </div>
-    </div>
-  </div>
+    </section>
+  </main>
 
-  <div class="toast" id="toast"></div>
+  <footer>
+    &copy; 2025 <a href="https://csv-to-single-column.enjoy-onepage.com" target="_blank">csv-to-single-column.enjoy-onepage.com</a>. 모든 권리 보유.
+  </footer>
 
   <script>
-    // 이하 스크립트는 기존과 동일 (광고 push는 각 광고마다 이미 포함)
-    // ... (아래는 기존 스크립트 그대로 붙여넣으시면 됩니다)
-    // 언어 지원, 변환 함수, 복사, 토스트, CIE 색도도 등
-    // (생략 없이 전체 코드 붙여넣으세요)
-    // ... (위 질문에 포함된 <script> 내용 전체)
+    function convert() {
+      const input = document.getElementById('input').value;
+      const rows = input.trim().split(/\r?\n/);
+      const flat = rows.flatMap(row => row.split(/,|;|\t|\|/));
+      const cleaned = flat.map(cell => cell.trim()).filter(cell => cell !== '');
+      document.getElementById('output').value = cleaned.join('\n');
+    }
+
+    function copyResult() {
+      const output = document.getElementById('output');
+      output.select();
+      output.setSelectionRange(0, 99999);
+      document.execCommand('copy');
+      if (window.navigator && window.navigator.vibrate) window.navigator.vibrate(60);
+      output.blur();
+    }
   </script>
 </body>
 </html>
