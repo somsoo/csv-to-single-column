@@ -258,21 +258,71 @@
   </footer>
 
   <script>
+    // RFC 4180 표준 지원 정밀 CSV 파서 (따옴표 내 구분자 및 쌍따옴표 이스케이프 완벽 보존)
+    function parseCSVLine(line) {
+      const result = [];
+      let cur = '';
+      let inQuotes = false;
+      
+      for (let i = 0; i < line.length; i++) {
+        const c = line[i];
+        if (c === '"') {
+          if (inQuotes && line[i + 1] === '"') {
+            cur += '"';
+            i++;
+          } else {
+            inQuotes = !inQuotes;
+          }
+        } else if (!inQuotes && (c === ',' || c === ';' || c === '\t' || c === '|')) {
+          result.push(cur.trim().replace(/^"(.*)"$/, '$1'));
+          cur = '';
+        } else {
+          cur += c;
+        }
+      }
+      result.push(cur.trim().replace(/^"(.*)"$/, '$1'));
+      return result;
+    }
+
     function convert() {
       const input = document.getElementById('input').value;
+      if (!input.trim()) {
+        document.getElementById('output').value = '';
+        return;
+      }
       const rows = input.trim().split(/\r?\n/);
-      const flat = rows.flatMap(row => row.split(/,|;|\t|\|/));
+      const flat = rows.flatMap(row => parseCSVLine(row));
       const cleaned = flat.map(cell => cell.trim()).filter(cell => cell !== '');
       document.getElementById('output').value = cleaned.join('\n');
+      if (window.showToastNotification) {
+        showToastNotification(`총 ${cleaned.length}개의 데이터가 1열로 변환되었습니다!`);
+      }
     }
 
     function copyResult() {
       const output = document.getElementById('output');
-      output.select();
-      output.setSelectionRange(0, 99999);
-      document.execCommand('copy');
+      const val = output.value.trim();
+      if (!val) {
+        if (window.showToastNotification) showToastNotification('변환된 데이터가 없습니다.');
+        return;
+      }
+      
+      if (navigator.clipboard && navigator.clipboard.writeText) {
+        navigator.clipboard.writeText(val).then(() => {
+          if (window.showToastNotification) showToastNotification('결과가 클립보드에 복사되었습니다! 🎉');
+        }).catch(() => fallbackCopy(output));
+      } else {
+        fallbackCopy(output);
+      }
       if (window.navigator && window.navigator.vibrate) window.navigator.vibrate(60);
-      output.blur();
+    }
+
+    function fallbackCopy(el) {
+      el.select();
+      el.setSelectionRange(0, 99999);
+      document.execCommand('copy');
+      el.blur();
+      if (window.showToastNotification) showToastNotification('결과가 클립보드에 복사되었습니다! 🎉');
     }
   </script>
 
@@ -324,7 +374,7 @@
         });
       };
 
-      function showToastNotification(msg) {
+      window.showToastNotification = function(msg) {
         let toast = document.getElementById('global-ux-toast');
         if (!toast) {
           toast = document.createElement('div');
