@@ -3,21 +3,57 @@
 <html lang="ko">
 <head>
 <link href="apple-touch-icon.png" rel="apple-touch-icon" sizes="180x180"/><script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "WebApplication",
-    "name": "CSV 2차원 데이터를 한 열로 변환 - 무료 온라인 툴",
-    "description": "CSV 또는 엑셀에서 복사한 2차원 데이터를 한 열(1차원) 데이터로 변환해주는 간편한 무료 웹 도구입니다. 모바일/PC 모두 최적화.",
-    "url": "https://csv-to-single-column.enjoy-onepage.com/",
-    "applicationCategory": "UtilitiesApplication",
-    "operatingSystem": "All",
-    "browserRequirements": "Requires JavaScript. Requires HTML5.",
-    "offers": {
-      "@type": "Offer",
-      "price": "0",
-      "priceCurrency": "KRW"
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "WebApplication",
+      "@id": "https://csv-to-single-column.enjoy-onepage.com/#webapp",
+      "name": "CSV 2차원 데이터를 한 열로 변환",
+      "url": "https://csv-to-single-column.enjoy-onepage.com/",
+      "applicationCategory": "UtilityApplication",
+      "operatingSystem": "All",
+      "browserRequirements": "Requires JavaScript. Requires HTML5.",
+      "description": "CSV 또는 엑셀에서 복사한 2차원 데이터를 한 열(1차원) 데이터로 변환해주는 간편한 무료 웹 도구입니다. 모바일/PC 모두 최적화.",
+      "image": "https://csv-to-single-column.enjoy-onepage.com/og-image.png",
+      "offers": {
+        "@type": "Offer",
+        "price": "0",
+        "priceCurrency": "KRW"
+      }
+    },
+    {
+      "@type": "FAQPage",
+      "@id": "https://csv-to-single-column.enjoy-onepage.com/#faq",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "엑셀에서 복사한 데이터를 바로 붙여넣어도 되나요?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "네, 엑셀 시트에서 여러 열/행을 복사하여 그대로 붙여넣으면 탭과 줄바꿈을 자동 감지하여 1줄 1데이터 형태로 완벽하게 변환합니다."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "따옴표로 감싸진 문장 안의 쉼표도 분리되나요?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "기본 모드에서는 구분자 단위로 분리되며, 따옴표 보존이 필요한 경우 공백 제거 옵션을 활용해 커스텀 정제가 가능합니다."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "대용량(수만 줄) 데이터도 처리 가능한가요?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "순수 자바스크립트 스트링 버퍼 알고리즘으로 설계되어 수만 행의 텍스트도 렉 없이 즉각 변환 및 복사할 수 있습니다."
+          }
+        }
+      ]
     }
-  }
+  ]
+}
   </script>
 <link href="https://csv-to-single-column.enjoy-onepage.com/" rel="canonical"/>
 <meta charset="utf-8"/>
