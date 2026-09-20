@@ -267,16 +267,18 @@
 <!-- ✅ 상단 광고 -->
 <p>엑셀/CSV 데이터를 복사해 붙여넣고, <b>한 열(1차원) 데이터</b>로 변환하세요.<br/>
     모바일과 PC 모두 최적화된 무료 웹 도구입니다.</p>
-<section>
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start max-w-6xl mx-auto">
+<section class="lg:col-span-6 w-full">
 <label for="input">CSV/엑셀 데이터 입력</label>
 <textarea id="input" placeholder="여기에 CSV 또는 엑셀 데이터를 붙여넣으세요"></textarea>
 <div class="btn-group">
-<button onclick="convert()">한 열로 변환</button>
-<button onclick="copyResult()" style="background:#4caf50;">결과 복사</button>
+<button onclick="convert()" class="py-3 min-h-[44px]">한 열로 변환</button>
+<button onclick="copyResult()" class="py-3 min-h-[44px]" style="background:#4caf50;">결과 복사</button>
 </div>
 <!-- ✅ 중간 광고 -->
 </section>
-<section class="result">
+</section>
+<section class="result lg:col-span-6 lg:sticky lg:top-8 w-full">
 <label for="output">변환 결과 (한 열 데이터)</label>
 <textarea id="output" placeholder="여기에 변환된 데이터가 표시됩니다" readonly=""></textarea>
 <!-- ✅ 하단 광고 -->
