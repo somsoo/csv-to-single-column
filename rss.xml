@@ -28,19 +28,5 @@
       <description>CSV 2차원 데이터를 한 열로 변환 - 무료 온라인 툴의 개인정보 보호 및 100% 브라우저 메모리 로컬 연산 보안 정책입니다.</description>
       <pubDate>Sat, 12 Sep 2026 01:10:00 +0900</pubDate>
     </item>
-    <item>
-      <title>다열 CSV 데이터를 단일 컬럼(1열)으로 병합·변환하는 데이터 정제 원리 | CSV 2차원 데이터를 한 열로 변환 - 무료 온라인 툴</title>
-      <link>https://csv-to-single-column.enjoy-onepage.com/guides/guide1.html</link>
-      <guid isPermaLink="true">https://csv-to-single-column.enjoy-onepage.com/guides/guide1.html</guid>
-      <description>엑셀이나 콤마(,) 구분 다차원 행렬 데이터를 데이터베이스 INSERT 및 대량 조회를 위해 1열로 세우는 법입니다.</description>
-      <pubDate>Sat, 12 Sep 2026 02:00:00 +0900</pubDate>
-    </item>
-    <item>
-      <title>엑셀(Excel) 언피벗(Melt) 기능과 SQL 단일 컬럼 적재 팁 | CSV 2차원 데이터를 한 열로 변환 - 무료 온라인 툴</title>
-      <link>https://csv-to-single-column.enjoy-onepage.com/guides/guide2.html</link>
-      <guid isPermaLink="true">https://csv-to-single-column.enjoy-onepage.com/guides/guide2.html</guid>
-      <description>파워쿼리(Power Query) 열 피벗 해제와 정제된 텍스트 데이터를 데이터베이스 테이블에 Bulk Insert하는 팁입니다.</description>
-      <pubDate>Sat, 12 Sep 2026 02:15:00 +0900</pubDate>
-    </item>
   </channel>
 </rss>
