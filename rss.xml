@@ -3,22 +3,29 @@
   <channel>
     <title>CSV 2차원 데이터를 한 열로 변환 - 무료 온라인 툴</title>
     <link>https://csv-to-single-column.enjoy-onepage.com/</link>
-    <description>CSV 2차원 데이터를 한 열로 변환 - 무료 온라인 툴 실시간 온라인 도구 및 팩트 기반 전문 칼럼 피드</description>
+    <description>CSV 또는 엑셀에서 복사한 2차원 데이터를 한 열(1차원) 데이터로 변환해주는 간편한 무료 웹 도구입니다. 모바일/PC 모두 최적화.</description>
     <language>ko-KR</language>
-    <lastBuildDate>Sat, 12 Sep 2026 03:00:00 +0900</lastBuildDate>
+    <lastBuildDate>Thu, 01 Oct 2026 03:12:25 +0900</lastBuildDate>
     <atom:link href="https://csv-to-single-column.enjoy-onepage.com/rss.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>CSV 2차원 데이터를 한 열로 변환 - 무료 온라인 툴</title>
       <link>https://csv-to-single-column.enjoy-onepage.com/</link>
       <guid isPermaLink="true">https://csv-to-single-column.enjoy-onepage.com/</guid>
-      <description>CSV 2차원 데이터를 한 열로 변환 - 무료 온라인 툴 실시간 온라인 무료 도구 및 시뮬레이터</description>
+      <description>CSV 또는 엑셀에서 복사한 2차원 데이터를 한 열(1차원) 데이터로 변환해주는 간편한 무료 웹 도구입니다. 모바일/PC 모두 최적화.</description>
       <pubDate>Sat, 12 Sep 2026 00:00:00 +0900</pubDate>
     </item>
     <item>
-      <title>CSV 2차원 데이터를 한 열로 변환 - 무료 온라인 툴 개인정보처리방침</title>
+      <title>이용약관 - CSV 2차원 데이터를 한 열로 변환</title>
+      <link>https://csv-to-single-column.enjoy-onepage.com/terms.html</link>
+      <guid isPermaLink="true">https://csv-to-single-column.enjoy-onepage.com/terms.html</guid>
+      <description>이용약관 - CSV 2차원 데이터를 한 열로 변환</description>
+      <pubDate>Thu, 01 Oct 2026 03:12:25 +0900</pubDate>
+    </item>
+    <item>
+      <title>개인정보처리방침 | CSV 1열 병합 변환기</title>
       <link>https://csv-to-single-column.enjoy-onepage.com/privacy.html</link>
       <guid isPermaLink="true">https://csv-to-single-column.enjoy-onepage.com/privacy.html</guid>
-      <description>CSV 2차원 데이터를 한 열로 변환 - 무료 온라인 툴의 개인정보 보호 및 100% 브라우저 메모리 로컬 연산 보안 정책입니다.</description>
+      <description>개인정보처리방침 | CSV 1열 병합 변환기</description>
       <pubDate>Sat, 12 Sep 2026 01:10:00 +0900</pubDate>
     </item>
   </channel>
